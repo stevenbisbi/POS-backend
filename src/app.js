@@ -12,8 +12,24 @@ import logSesionRoutes from "./routes/logSesion.routes.js";
 import reportRoutes from "./routes/report.routes.js";
 
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "http://localhost:5173", // frontend
-  credentials: true, // muy importante
+  origin: function (origin, callback) {
+    // Permitir requests sin origin (Postman, etc)
+    if (!origin) return callback(null, true);
+
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      process.env.CLIENT_URL, // https://pos-frontend-navy.vercel.app
+    ];
+
+    // Permitir cualquier subdominio de vercel.app
+    if (origin.endsWith(".vercel.app") || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
 };
 
 const app = express();
