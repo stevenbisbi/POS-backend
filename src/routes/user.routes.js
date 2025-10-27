@@ -10,14 +10,9 @@ import {
 
 const router = Router();
 
-router.get("/users", handleValidationErrors, validateRoleAdmin, getUsers);
-router.get("/user/:id", handleValidationErrors, validateRoleAdmin, getUser);
-router.delete(
-  "/user/:id",
-  handleValidationErrors,
-  validateRoleAdmin,
-  deleteUser
-);
-router.put("/user/:id", handleValidationErrors, validateRoleAdmin, updateUser);
+router.get("/", handleValidationErrors, validateRoleAdmin, getUsers);
+router.get("/:id", handleValidationErrors, validateRoleAdmin, getUser);
+router.delete("/:id", handleValidationErrors, validateRoleAdmin, deleteUser);
+router.put("/:id", handleValidationErrors, validateRoleAdmin, updateUser);
 
 export default router;
