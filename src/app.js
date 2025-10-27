@@ -43,7 +43,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", authRequired, userRoutes);
 app.use("/api/v1/products", authRequired, productRoutes);
 app.use("/api/v1/sales/", authRequired, saleRoutes);
-app.use("/api/v1", authRequired, logSesionRoutes);
+app.use("/api/v1/logSesions", authRequired, logSesionRoutes);
 app.use("/api/v1/reports", authRequired, reportRoutes);
 app.get("/", (req, res) => {
   res.send("Backend funcionando 🚀");
